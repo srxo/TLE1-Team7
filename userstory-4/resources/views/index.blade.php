@@ -6,7 +6,8 @@
     <title>JSON Search</title>
 </head>
 <body>
-<form action="search.php" method="post">
+<form action="{{ route('search') }}" method="post">
+    @csrf
     <label for="searchTerm">Search:</label>
     <input type="text" id="searchTerm" name="searchTerm" required>
     <button type="submit">Search</button>
