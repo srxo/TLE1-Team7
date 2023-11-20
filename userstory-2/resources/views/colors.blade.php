@@ -22,7 +22,7 @@
             cursor: pointer;
         }
     </style>
-    <link rel="stylesheet" href="{{ asset('css/colors.scss') }}">
+    <link rel="stylesheet" href="{{ mix('css/colors.scss') }}">
 </head>
 <body>
 
@@ -45,6 +45,9 @@
 
         // Save the current color mode to local storage
         localStorage.setItem('colorMode', currentColor);
+
+        // Reload the page
+        location.reload();
     }
 
     // Apply the saved color mode on page load
