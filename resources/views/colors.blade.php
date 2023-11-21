@@ -3,26 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Color Toggle</title>
-    <style>
-        body {
-            transition: background-color 0.5s, color 0.5s;
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: auto;
-            text-align: center;
-        }
-
-        .btn-toggle {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-    </style>
-    <link rel="stylesheet" href="{{ mix('css/colors.scss') }}">
+    <link rel="stylesheet" href="../css/colors.scss">
 </head>
 <body>
 
