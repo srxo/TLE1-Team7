@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Color Toggle</title>
-    <link rel="stylesheet" href="../css/colors.scss">
+    @vite(['resources/scss/colors.scss', 'resources/js/app.js', 'resources/css/app.css'])
 </head>
 <body>
 
@@ -16,6 +16,7 @@
     </div>
 </div>
 
+
 <script>
     function toggleColors() {
         const body = document.body;
@@ -26,15 +27,12 @@
 
         // Save the current color mode to local storage
         localStorage.setItem('colorMode', currentColor);
-
-        // Reload the page
-        location.reload();
     }
 
     // Apply the saved color mode on page load
     document.addEventListener('DOMContentLoaded', function () {
         const savedColorMode = localStorage.getItem('colorMode');
-        if (savedColorMode === 'dark') {
+        if (savedColorMode !== 'dark') {
             document.body.classList.add('dark-mode');
         }
     });
