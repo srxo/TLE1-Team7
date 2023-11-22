@@ -40,12 +40,16 @@
         const savedColorMode = localStorage.getItem('colorMode');
         if (savedColorMode !== 'dark') {
             document.body.classList.add('dark-mode');
+        } else {
+            document.body.classList.remove('dark-mode');
         }
+
         if (savedColorMode === 'dark') {
             document.body.classList.add('light-mode');
+        } else {
+            document.body.classList.remove('light-mode');
         }
     });
-
 </script>
 
 </body>
