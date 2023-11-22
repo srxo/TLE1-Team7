@@ -23,8 +23,14 @@
         const currentColor = body.classList.contains('dark-mode') ? 'dark' : 'light';
 
         // Toggle between light and dark mode
-        body.classList.toggle('dark-mode');
-
+        if (currentColor === 'light') {
+            body.classList.remove('light-mode');
+            body.classList.toggle('dark-mode');
+        }
+        if (currentColor === 'dark') {
+            body.classList.remove('dark-mode');
+            body.classList.toggle('light-mode');
+        }
         // Save the current color mode to local storage
         localStorage.setItem('colorMode', currentColor);
     }
@@ -35,7 +41,11 @@
         if (savedColorMode !== 'dark') {
             document.body.classList.add('dark-mode');
         }
+        if (savedColorMode === 'dark') {
+            document.body.classList.add('light-mode');
+        }
     });
+
 </script>
 
 </body>
