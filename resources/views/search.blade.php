@@ -7,13 +7,13 @@
 </head>
 <body>
 <h2>Search Results:</h2>
-@if (empty($results))
+@if ($results->isEmpty())
     <p>No results found.</p>
 @else
     <ul>
         @foreach ($results as $result)
-            <!-- Update the link to encode the item name in the URL -->
-            <li><a href="{{ route('details', urlencode($result['name'])) }}">{{ $result['name'] }}</a></li>
+            <!-- Update the link to use the ID from the database -->
+            <li><a href="{{ route('details', $result->id) }}">{{ $result->name }}</a></li>
         @endforeach
     </ul>
 @endif

@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ItemController;
 
-Route::get('/', [SearchController::class, 'index']);
-Route::post('/search', [SearchController::class, 'search'])->name('search');
-Route::get('/details/{id}', [SearchController::class, 'details'])->name('details');
+Route::get('/', [ItemController::class, 'index']);
+Route::post('/search', [ItemController::class, 'search'])->name('search');
+Route::get('/details/{id}', [ItemController::class, 'details'])->name('details');

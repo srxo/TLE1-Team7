@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Item;
 
-class SearchController extends Controller
+class ItemController extends Controller
 {
-    // ... (no changes to the existing code)
+    public function index()
+    {
+        return view('index');
+    }
 
     public function search(Request $request)
     {
@@ -21,10 +25,8 @@ class SearchController extends Controller
     public function details($id)
     {
         // Use the Item model to retrieve details from the database
-        $details = Item::where('name', $id)->first();
+        $details = Item::find($id);
 
         return view('details', ['details' => $details]);
     }
 }
-
-

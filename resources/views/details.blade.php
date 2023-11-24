@@ -6,11 +6,10 @@
     <title>Details</title>
 </head>
 <body>
-<h2>Details for {{ $details['name'] }}:</h2>
-<!-- Update the check for details to avoid potential errors -->
+<h2>Details for {{ $details->name }}:</h2>
 @isset($details)
-    <p>Name: {{ $details['name'] }}</p>
-    <p>Description: {{ $details['description'] }}</p>
+    <p>Name: {{ $details->name }}</p>
+    <p>Description: {{ $details->description }}</p>
 @else
     <p>Item not found.</p>
 @endisset
