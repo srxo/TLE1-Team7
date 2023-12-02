@@ -12,12 +12,18 @@
         <tr>
             <th>Name</th>
             <th>Description</th>
+            <th>Devices</th>
+            <th>Images</th>
         </tr>
         <tbody>
-        @foreach ($items as $item)
+        @foreach ($games as $game)
             <tr>
-                <td>{{ $item->name }}</td>
-                <td>{{ $item->Description}}</td>
+                <td>{{ $game->name }}</td>
+                <td>{{ $game->Description }}</td>
+                <td>{{ $game->devices }} </td>
+                <td>
+                    <img src="{{ asset('img')}} / {{ $game->banner_image }}" alt= "Image from db"/>
+                </td>
             </tr>
         @endforeach
         </tbody>

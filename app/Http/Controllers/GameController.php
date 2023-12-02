@@ -12,9 +12,21 @@ class GameController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $search = $request->input('search');
+
+        $query = Game::query();
+
+        if ($search) {
+            $query->where('name', 'like', '%' . $search . '%')
+                ->orWhere('description', 'like', '%' . $search . '%')
+                ->orWhere('devices', 'like', '%' . $search . '%');
+        }
+
+        $games = $query->get();
+
+        return view('games', compact('games'));
     }
 
     /**
