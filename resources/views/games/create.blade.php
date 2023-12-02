@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <form action="{{route('games.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
     <label for="name">Name</label>
@@ -32,3 +35,4 @@
         Submit
     </button>
 </form>
+@endsection
