@@ -17,10 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+// In routes/web.php
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/age-warning', 'AgeWarningSettingController@index')->name('age-warning.index');
+Route::post('/age-warning/toggle', 'AgeWarningSettingController@toggle')->name('age-warning.toggle');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
