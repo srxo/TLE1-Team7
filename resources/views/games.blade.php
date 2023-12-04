@@ -22,7 +22,7 @@
                 <td>{{ $game->description }}</td>
                 <td>{{ $game->devices }} </td>
                 <td>
-                    <img alt="Image from db" src= {{url('/img' . $game->banner_image)}}/>
+                    <img alt="Image from db" src= {{url('/img/' . $game->banner_image)}}/>
                 </td>
             </tr>
         @endforeach
