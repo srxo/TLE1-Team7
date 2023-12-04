@@ -19,10 +19,10 @@
         @foreach ($games as $game)
             <tr>
                 <td>{{ $game->name }}</td>
-                <td>{{ $game->Description }}</td>
+                <td>{{ $game->description }}</td>
                 <td>{{ $game->devices }} </td>
                 <td>
-                    <img src="{{ asset('img')}} / {{ $game->banner_image }}" alt= "Image from db"/>
+                    <img alt="Image from db" src= {{url('/img' . $game->banner_image)}}/>
                 </td>
             </tr>
         @endforeach
