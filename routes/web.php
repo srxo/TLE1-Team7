@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GameController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,11 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('games.create');
 });
 
 // In routes/web.php
 
 Route::get('/age-warning', 'AgeWarningSettingController@index')->name('age-warning.index');
 Route::post('/age-warning/toggle', 'AgeWarningSettingController@toggle')->name('age-warning.toggle');
+Route::resource('games', GameController::class);
 
