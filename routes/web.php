@@ -25,3 +25,9 @@ Auth::routes();
 Route::get('/cards', [GameController::class, 'index'])->name('games.index');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Put all admin routes here
+Route::middleware(['auth', 'admin'])->group(function () {
+
+});
+
