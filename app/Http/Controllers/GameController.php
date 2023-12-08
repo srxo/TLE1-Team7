@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Game;
 use App\Http\Controllers\Controller;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -14,7 +16,9 @@ class GameController extends Controller
      */
     public function index(Request $request)
     {
+        $genres = Genre::all();
         $search = $request->input('search');
+        $genre = $request->input('category');
 
         $query = Game::query();
 
@@ -22,6 +26,12 @@ class GameController extends Controller
             $query->where('name', 'like', '%' . $search . '%')
                 ->orWhere('description', 'like', '%' . $search . '%')
                 ->orWhere('devices', 'like', '%' . $search . '%');
+        }
+
+        if ($genre) {
+            $query->whereHas('genres', function ($query) use ($genre) {
+                $query->whereIn('genre_id', $genre);
+            });
         }
 
         $games = $query->get();

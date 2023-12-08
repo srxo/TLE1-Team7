@@ -20,4 +20,9 @@ class Game extends Model
         'devices',
         'banner_image',
     ];
+
+    public function genres()
+    {
+        return $this->belongsToMany(Genre::class);
+    }
 }
