@@ -27,8 +27,8 @@
                 <td>{{ $game->description }}</td>
                 <td>{{ $game->devices }} </td>
                 <td>
-                    @foreach($card->categories as $category)
-                        {{ $category->name}}
+                    @foreach($game->genres as $genre)
+                        {{ $genre->name}}
                     @endforeach
                 </td>
                 <td>

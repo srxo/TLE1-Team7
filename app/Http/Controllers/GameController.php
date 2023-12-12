@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Game;
 use App\Http\Controllers\Controller;
 use App\Models\Genre;
@@ -18,7 +17,7 @@ class GameController extends Controller
     {
         $genres = Genre::all();
         $search = $request->input('search');
-        $genre = $request->input('category');
+        $genre = $request->input('genre');
 
         $query = Game::query();
 
@@ -36,7 +35,7 @@ class GameController extends Controller
 
         $games = $query->get();
 
-        return view('games', compact('games'));
+        return view('games', compact('games', 'genres'));
     }
 
     /**
@@ -44,7 +43,8 @@ class GameController extends Controller
      */
     public function create()
     {
-        return view('games.create');
+        $genres = Genre::all();
+        return view('games.create', compact('genres'));
     }
 
     /**
