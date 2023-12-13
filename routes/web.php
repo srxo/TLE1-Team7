@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,8 @@ Route::get('/', function () {
 });
 
 Route::resource('games', GameController::class);
+
+Route::post('/review/store/{game}', [ReviewController::class, 'store'])->name('review.store');
 
 Auth::routes();
 
