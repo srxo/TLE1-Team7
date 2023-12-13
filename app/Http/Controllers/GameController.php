@@ -12,9 +12,9 @@ class GameController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function details()
     {
-        //
+        return view('details');
     }
 
     /**
