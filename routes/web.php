@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GameController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('colors');
+//Route::get('/', function () {
+//    return view('games.create');
+//});
+
+Route::resource('games', GameController::class);
+
+Auth::routes();
+
+Route::get('/games', [GameController::class, 'index'])->name('games.index');
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Put all admin routes here
+Route::middleware(['auth', 'admin'])->group(function () {
 });
+
+//Route::get('/', function () {
+//    return view('colors');
+//});
