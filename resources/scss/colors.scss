@@ -1,0 +1,33 @@
+body {
+    transition: background-color 0.5s, color 0.5s;
+
+
+    &.dark-mode {
+        background-color: black;
+        color: yellow;
+    }
+
+    &.light-mode {
+        background-color: white;
+        color: blue;
+    }
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+
+    &.dark-mode {
+        color: yellow;
+    }
+}
+
+.btn-toggle {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+
+}
+
+
