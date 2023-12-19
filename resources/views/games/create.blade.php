@@ -18,12 +18,29 @@
         </div>
     @enderror
     <label for="devices">Devices</label>
-    <input id="devices" type="text" name="devices" value="{{old('devices')}}">
+    <select id="devices" name="devices">
+        <option value="PC">PC</option>
+        <option value="XBOX">XBOX</option>
+        <option value="Playstation">Playstation</option>
+        <option value="Mobiel">Mobiel</option>
+        <Option value="NintendoSwitch">NintendoSwitch</Option>
+
+    </select>
     @error('devices')
-        <div>
-            {{$message}}
-        </div>
+    <div>
+        {{ $message }}
+    </div>
     @enderror
+
+    <div class="form-group">
+        <label for="genre_id">Genre</label>
+        <select name="genre_id[]" class="form-control" multiple>
+            <option value="">Kies tot 2 genres</option>
+            @foreach($genres as $genre)
+                <option value="{{ $genre->id }}">{{ $genre->name }}</option>
+            @endforeach
+        </select>
+    </div>
     <label for="image">Banner Image</label>
     <input id="image" type="file" name="image" value="{{old('image')}}">
     @error('image')

@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('game_genre', function (Blueprint $table) {
             $table->id();
-
-            $table->foreignId('game_id')->constrained();
-            $table->foreignId('genre_id')->constrained();
-
+            $table->bigInteger('game_id')->unsigned();
+            $table->bigInteger('genre_id')->unsigned();
             $table->timestamps();
+
+            $table->unique(['game_id', 'genre_id']);
         });
+
+
     }
 
     /**
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('game_genre');
+        Schema::dropIfExists('_pivot_');
     }
 };

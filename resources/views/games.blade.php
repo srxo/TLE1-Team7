@@ -5,6 +5,14 @@
     <form action="{{ route('games.index') }}" method="get">
         @csrf
         <input type="text" name="search" placeholder="Search cards">
+        <select name="genre[]" multiple>
+            @foreach($genres as $genre)
+                <option value="{{ $genre->id }}">{{ $genre->name }}</option>
+            @endforeach
+        </select>
+        <button type="submit">
+            Submit
+        </button>
     </form>
 
     <table class = "table">
@@ -21,6 +29,11 @@
                 <td>{{ $game->name }}</td>
                 <td>{{ $game->description }}</td>
                 <td>{{ $game->devices }} </td>
+                <td>
+                    @foreach($game->genres as $genre)
+                        {{ $genre->name}}
+                    @endforeach
+                </td>
                 <td>
                     <img alt="Image from db" src="{{url('/img/games/' . $game->banner_image)}}"/>
                 </td>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use App\Http\Controllers\Controller;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -14,7 +15,9 @@ class GameController extends Controller
      */
     public function index(Request $request)
     {
+        $genres = Genre::all();
         $search = $request->input('search');
+        $genre = $request->input('genre');
 
         $query = Game::query();
 
@@ -24,9 +27,15 @@ class GameController extends Controller
                 ->orWhere('devices', 'like', '%' . $search . '%');
         }
 
+        if ($genre) {
+            $query->whereHas('genres', function ($query) use ($genre) {
+                $query->whereIn('genre_id', $genre);
+            });
+        }
+
         $games = $query->get();
 
-        return view('games', compact('games'));
+        return view('games', compact('games', 'genres'));
     }
 
     /**
@@ -34,7 +43,8 @@ class GameController extends Controller
      */
     public function create()
     {
-        return view('games.create');
+        $genres = Genre::all();
+        return view('games.create', compact('genres'));
     }
 
     /**
@@ -42,6 +52,8 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
+        Genre::all();
+
         $data = $this->validator($request->all())->validate();
 
         $filename = '';
@@ -52,12 +64,16 @@ class GameController extends Controller
             $image->move(public_path('img/games'), $filename);
         }
 
-        Game::create([
+        $game = Game::create([
             'name' => $data['name'],
             'description' => $data['description'],
             'devices' => $data['devices'],
             'banner_image' => $filename,
         ]);
+
+        foreach ($data['genre_id'] as $genre) {
+            $game->genres()->attach($genre);
+        }
 
         return redirect()->route('games.create');
     }
@@ -104,6 +120,7 @@ class GameController extends Controller
             'description' => ['required', 'string', 'max:500'],
             'devices' => ['required', 'string', 'max:500'],
             'image' => ['required', 'mimes:jpg,jpeg,png,gif,svg,webp', 'max:10000'],
+            'genre_id' => ['required', 'array', 'max:2'],
         ]);
     }
 }
