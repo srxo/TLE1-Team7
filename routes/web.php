@@ -20,7 +20,5 @@ Route::get('/', function () {
 
 // In routes/web.php
 
-Route::get('/age-warning', 'AgeWarningSettingController@index')->name('age-warning.index');
-Route::post('/age-warning/toggle', 'AgeWarningSettingController@toggle')->name('age-warning.toggle');
 Route::resource('games', GameController::class);
 

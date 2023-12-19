@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('description', '500');
             $table->string('devices', '500');
             $table->string('banner_image', '500');
+            $table->tinyInteger('age_warning');
 
             $table->timestamps();
         });

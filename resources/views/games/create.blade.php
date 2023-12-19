@@ -24,6 +24,8 @@
             {{$message}}
         </div>
     @enderror
+    <label for="age-warning">18+</label>
+    <input id="age-warning" type="checkbox" name="age-warning" value="yes">
     <label for="image">Banner Image</label>
     <input id="image" type="file" name="image" value="{{old('image')}}">
     @error('image')

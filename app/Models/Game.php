@@ -19,5 +19,6 @@ class Game extends Model
         'description',
         'devices',
         'banner_image',
+        'age_warning'
     ];
 }

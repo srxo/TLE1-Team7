@@ -40,10 +40,17 @@ class GameController extends Controller
             $image->move(public_path('img/games'), $filename);
         }
 
+        if (array_key_exists('age-warning',$data)) {
+            $over18 = 1;
+        } else {
+            $over18 = 0;
+        }
+
         Game::create([
             'name' => $data['name'],
             'description' => $data['description'],
             'devices' => $data['devices'],
+            'age_warning' => $over18,
             'banner_image' => $filename,
         ]);
 
@@ -53,9 +60,18 @@ class GameController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Game $game)
+    public function show(Request $request, Game $game)
     {
-        //
+        // get item from database
+        // check for 18+ varaible
+        // if 18+ then show warning
+        dd($request);
+        if ($game->age_warning == '1' && $request === false){
+            return view('games.warning', compact('game', 'bypassed'));
+        } else {
+            return view('games.details');
+        }
+        // if not then show page
     }
 
     /**
@@ -91,6 +107,7 @@ class GameController extends Controller
             'name' => ['required', 'string', 'max:500'],
             'description' => ['required', 'string', 'max:500'],
             'devices' => ['required', 'string', 'max:500'],
+            'age-warning' => ['string', 'max:15'],
             'image' => ['required', 'mimes:jpg,jpeg,png,gif,svg,webp', 'max:10000'],
         ]);
     }

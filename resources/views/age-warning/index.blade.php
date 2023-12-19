@@ -37,11 +37,4 @@
     </div>
 </div>
 
-<script>
-    function toggleWarning() {
-        $.post("{{ route('age-warning.toggle') }}", function () {
-            //             Refresh the page after clearing the warning
-            location.reload();
-        });
-    }
-</script>
+
