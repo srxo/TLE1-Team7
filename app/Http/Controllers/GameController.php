@@ -114,6 +114,7 @@ class GameController extends Controller
             'description' => ['required', 'string', 'max:500'],
             'devices' => ['required', 'string', 'max:500'],
             'image' => ['required', 'mimes:jpg,jpeg,png,gif,svg,webp', 'max:10000'],
+            'genre_id' => ['required', 'array', 'max:2'],
         ]);
     }
 }
