@@ -52,6 +52,8 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
+        $genres = Genre::all();
+
         $data = $this->validator($request->all())->validate();
 
         $filename = '';
@@ -62,12 +64,16 @@ class GameController extends Controller
             $image->move(public_path('img/games'), $filename);
         }
 
-        Game::create([
+        $game = Game::create([
             'name' => $data['name'],
             'description' => $data['description'],
             'devices' => $data['devices'],
             'banner_image' => $filename,
         ]);
+
+        foreach ($genres as $data) {
+            $game->genres()->attach($data);
+        }
 
         return redirect()->route('games.create');
     }
