@@ -5,11 +5,14 @@
     <form action="{{ route('games.index') }}" method="get">
         @csrf
         <input type="text" name="search" placeholder="Search cards">
-        <select name="category[]" multiple>
+        <select name="genre[]" multiple>
             @foreach($genres as $genre)
                 <option value="{{ $genre->id }}">{{ $genre->name }}</option>
             @endforeach
         </select>
+        <button type="submit">
+            Submit
+        </button>
     </form>
 
     <table class = "table">
