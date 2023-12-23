@@ -6,7 +6,7 @@
         @csrf
         <input type="text" name="search" placeholder="Search cards">
         <select name="genre[]" multiple>
-            @foreach($genres as $genre)
+`            @foreach($genres as $genre)
                 <option value="{{ $genre->id }}">{{ $genre->name }}</option>
             @endforeach
         </select>

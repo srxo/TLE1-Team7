@@ -26,6 +26,12 @@ Route::get('/games', [GameController::class, 'index'])->name('games.index');
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// Put all routes here that require authentication
+Route::middleware(['auth'])->group(function () {
+    Route::get('/user', [\App\Http\Controllers\UserController :: class, 'index'])->name('user.index');
+});
+
+
 //Put all admin routes here
 Route::middleware(['auth', 'admin'])->group(function () {
 });
