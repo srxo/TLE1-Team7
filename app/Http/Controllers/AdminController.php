@@ -41,6 +41,6 @@ class AdminController extends Controller
         // Toggle the suspension status
         $user->update(['is_suspended' => !$user->is_suspended]);
 
-        return redirect()->route('user.index')->with('success', 'User suspended/un-suspended successfully.');
+        return redirect()->route('admin.index')->with('success', 'User suspended/un-suspended successfully.');
     }
 }
