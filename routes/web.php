@@ -3,6 +3,7 @@
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\AdminController;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +28,10 @@ Auth::routes();
 Route::get('/games', [GameController::class, 'index'])->name('games.index');
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware(['guest', 'is_suspended'])->group(function () {
+    Route::post('/login', 'Auth\LoginController@login')->name('login');
+});
 
 //Put all admin routes here
 Route::middleware(['auth', 'admin'])->group(function () {
