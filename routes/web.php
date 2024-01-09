@@ -35,6 +35,7 @@ Route::middleware(['auth'])->group(function () {
 //Put all admin routes here
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/create', [GameController::class, 'create'])->name('game.create');
+    Route::get('/admin', [\App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
 });
 
 //Route::get('/', function () {
