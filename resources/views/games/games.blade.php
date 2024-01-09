@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <form action="{{ route('games.index') }}" method="get">
+    <form action="{{ route('games.search') }}" method="get">
         @csrf
         <input type="text" name="search" placeholder="Search cards">
         <select name="genre[]" multiple>

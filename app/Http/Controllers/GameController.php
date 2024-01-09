@@ -13,8 +13,18 @@ class GameController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
+        $genres = Genre::all();
+
+        $query = Game::query();
+
+        $games = $query->get();
+
+        return view('games.games', compact('games', 'genres'));
+    }
+
+    public function search(Request $request) {
         $genres = Genre::all();
         $search = $request->input('search');
         $genre = $request->input('genre');
@@ -35,7 +45,7 @@ class GameController extends Controller
 
         $games = $query->get();
 
-        return view('games', compact('games', 'genres'));
+        return view('games.games', compact('games', 'genres'));
     }
 
     /**

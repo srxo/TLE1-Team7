@@ -11,7 +11,7 @@ class AdminController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('admin', compact('users'));
+        return view('admin.admin', compact('users'));
     }
 
     public function makeAdmin($id)
