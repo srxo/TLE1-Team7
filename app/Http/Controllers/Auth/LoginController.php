@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\is_suspended;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -36,5 +39,20 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        $user = User::all()->where('email', '=', $request->email);
+        if ($user) {
+            if (current(current($user))->is_suspended) {
+                return $this->sendFailedLoginResponse($request);
+            }
+        }
     }
 }

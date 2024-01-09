@@ -29,9 +29,9 @@ Route::get('/games', [GameController::class, 'index'])->name('games.index');
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::middleware(['guest', 'is_suspended'])->group(function () {
-    Route::post('/login', 'Auth\LoginController@login')->name('login');
-});
+//Route::middleware(['guest', 'is_suspended'])->group(function () {
+//    Route::post('/login', [\App\Http\Controllers\Auth\LoginController::class])->name('login');
+//});
 
 //Put all admin routes here
 Route::middleware(['auth', 'admin'])->group(function () {
