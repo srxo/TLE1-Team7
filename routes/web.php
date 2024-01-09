@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GameController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,7 +36,10 @@ Route::middleware(['auth'])->group(function () {
 //Put all admin routes here
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/create', [GameController::class, 'create'])->name('game.create');
-    Route::get('/admin', [\App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/admin/make-admin/{id}', [AdminController::class, 'makeAdmin'])->name('admin.makeAdmin');
+    Route::delete('/admin/remove-admin/{id}', [AdminController::class, 'removeAdmin'])->name('admin.removeAdmin');
+    Route::post('/user/{id}/suspend', [AdminController::class, 'suspendUser'])->name('user.suspend');
 });
 
 //Route::get('/', function () {
