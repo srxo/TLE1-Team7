@@ -117,6 +117,14 @@
                             <a class="nav-link" href="{{route('games.create')}}">Toevoegen</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{route('user.index')}}">Gebruiker</a>
+                        </li>
+                        @if(auth()->user()->isAdmin)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.index') }}">Admin Dashboard</a>
+                            </li>
+                        @endif
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 {{ __('Log uit') }}
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

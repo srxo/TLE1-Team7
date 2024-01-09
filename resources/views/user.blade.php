@@ -1,20 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-
-    <table class = "table">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-        </tr>
-
-    <tbody>
-        <td>
-            {{auth()->user()->name}}
-        </td>
-        <td>
-            {{auth()->user()->email}}
-        </td>
-    <tbody>
+    <div class="container mt-4">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{ auth()->user()->name }}</td>
+                <td>{{ auth()->user()->email }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 @endsection
