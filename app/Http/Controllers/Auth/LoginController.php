@@ -49,7 +49,7 @@ class LoginController extends Controller
         ]);
 
         $user = User::all()->where('email', '=', $request->email);
-        if ($user) {
+        if (current($user)) {
             if (current(current($user))->is_suspended) {
                 return $this->sendFailedLoginResponse($request);
             }
