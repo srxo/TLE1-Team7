@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\AdminController;
+
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,14 +29,16 @@ Route::get('/games', [GameController::class, 'index'])->name('games.index');
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Put all routes here that require authentication
-Route::middleware(['auth'])->group(function () {
-    Route::get('/user', [\App\Http\Controllers\UserController :: class, 'index'])->name('user.index');
-});
-
+//Route::middleware(['guest', 'is_suspended'])->group(function () {
+//    Route::post('/login', [\App\Http\Controllers\Auth\LoginController::class])->name('login');
+//});
 
 //Put all admin routes here
 Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/admin/make-admin/{id}', [AdminController::class, 'makeAdmin'])->name('admin.makeAdmin');
+    Route::delete('/admin/remove-admin/{id}', [AdminController::class, 'removeAdmin'])->name('admin.removeAdmin');
+    Route::post('/user/{id}/suspend', [AdminController::class, 'suspendUser'])->name('user.suspend');
 });
 
 //Route::get('/', function () {
