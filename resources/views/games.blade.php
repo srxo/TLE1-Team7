@@ -24,11 +24,11 @@
         <table class="table table-warning">
             <thead>
             <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Description</th>
+                <th scope="col">Naam</th>
+                <th scope="col">Beschrijving</th>
                 <th scope="col">Devices</th>
                 <th scope="col">Genres</th>
-                <th scope="col">Images</th>
+                <th scope="col">Foto's</th>
             </tr>
             </thead>
             <tbody>

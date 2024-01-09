@@ -15,6 +15,7 @@
             background-color: black;
             color: yellow;
             margin: 0;
+            font-size: 48px;
         }
 
         .header {
@@ -46,6 +47,31 @@
             padding: 5px 10px;
             border-radius: 5px;
         }
+
+        select {
+            :is(option) {
+                font-size: 32px;
+            }
+        }
+
+        .btn-warning {
+            font-size: 32px;
+        }
+
+        .navbar-brand {
+            font-size: 48px;
+        }
+
+        .navbar-brand:hover,
+        .navbar-brand:focus {
+            color: yellow;
+            background-color: transparent;
+        }
+
+        .form-control {
+            font-size: 32px;
+        }
+
     </style>
 </head>
 <body>
@@ -53,10 +79,10 @@
     <title style="color: yellow;">{{ config('app.name', 'SightlessGamers') }}</title>
 </div>
 <div id="app">
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <nav class="navbar navbar-expand-md navbar-light bg-black shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
+                {{ config('app.name', 'SightlessGamers') }}
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
@@ -74,18 +100,29 @@
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Log in') }}</a>
                             </li>
                         @endif
 
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Registreer') }}</a>
                             </li>
                         @endif
                     @else
-                        <!-- ... (unchanged) ... -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('games.index')}}">Games</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('games.create')}}">Toevoegen</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{route('logout') }}">{{__('Log uit') }}</a>
+                        </li>
                     @endguest
+
+
+
                 </ul>
             </div>
         </div>
