@@ -19,6 +19,10 @@ use Illuminate\Support\Facades\Route;
 //    return view('games.create');
 //});
 
+if (env('APP_ENV') === 'production') {
+    URL::forceScheme('https');
+}
+
 Route::resource('games', GameController::class);
 
 Auth::routes();
