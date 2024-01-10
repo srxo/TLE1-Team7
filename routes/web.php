@@ -25,6 +25,8 @@ Auth::routes();
 
 Route::get('/games', [GameController::class, 'index'])->name('games.index');
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Put all routes here that require authentication
